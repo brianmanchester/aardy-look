@@ -1,0 +1,141 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Josefin Sans', sans-serif;
+	/*font-family: 'Indie Flower', cursive;*/
+	position: relative;
+	min-height: 100%;
+}
+
+.navbar-default {
+	background-color: #30BD9C;
+	border-color: #EF476F;
+	border-width: 0 0 2px 0;
+}
+
+.navbar-default .navbar-brand {
+	padding: 0;
+	font-family: 'Indie Flower', cursive;
+	font-size: 30px;
+	color: #fff;
+}
+
+#marquee {
+	display: inline-block;
+	margin: 0 auto;
+	padding-top: 11px;
+	text-decoration: underline;
+}
+
+#marquee:hover {
+	color: #343434;
+}
+
+#aardy {
+	width: 48px;
+	height: 33px;
+	background-color: #fff;
+	border-style: solid;
+	border-color: #fff;
+	border-radius: 50%;
+	padding: 5px;
+	margin-right: 10px;
+	margin-left: 30px;
+}
+
+.navbar-default .navbar-right > li > a {
+	color: #343434;
+}
+
+.navbar-default .navbar-right > li > a:hover {
+	color: #fff;
+}
+
+
+#about {
+	padding-top: 5px;
+	font-size: 18px;
+}
+
+#aardyContainer {
+	width: 350px;
+	height: 350px;
+	background-color: #30BD9C;
+	border-radius: 50%;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 60px;
+}
+
+#bigAardy {
+	margin: 0 auto;
+	width: 240px;
+	height: 165px;
+	position: absolute;
+	left: 60px;
+	top: 97px;
+}
+
+#title {
+	font-family: 'Indie Flower', cursive;
+	font-size: 80px;
+	color: #30BD9C;
+}
+
+.slogan {
+	margin-top: 10px;
+	color: #343434;
+}
+
+#line {
+	width: 50px;
+	margin: 0 auto;
+	border-style: solid;
+	border-width: 0 0 4px 0;
+	border-color: #30BD9C;
+}
+
+#space {
+	margin-bottom: 100px;
+}
+
+#san {
+	width: 350px;
+	color: #343434;
+	background-color: #EF476F;
+	font-size: 25px;
+	padding: 12px 0 8px 0;
+	color: #fff;
+	border-style: solid;
+	border-color: #EF476F;
+	border-radius: 50px;
+	margin: 60px 0 60px 0;
+}
+
+#san:hover {
+	border-color: #26547C;
+	background-color: #26547C;
+}
+
+.navbar-fixed-bottom {
+	border-color: #EF476F;
+	border-width: 2px 0 0 0;
+	background-color: #26547C;
+}
+
+.navbar-default .navbar-text {
+	color: #fff;
+	width: 100%;
+	font-size: 12px;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+}
