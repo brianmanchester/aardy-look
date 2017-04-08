@@ -64,13 +64,13 @@ body {
 }
 
 #aardyContainer {
-	width: 350px;
-	height: 350px;
+	width: 270px;
+	height: 270px;
 	background-color: #30BD9C;
 	border-radius: 50%;
 	margin: 0 auto;
 	position: relative;
-	margin-top: 60px;
+	margin-top: 5px;
 }
 
 #bigAardy {
@@ -78,14 +78,15 @@ body {
 	width: 240px;
 	height: 165px;
 	position: absolute;
-	left: 60px;
-	top: 97px;
+	left: 17px;
+	top: 52.5px;
 }
 
 #title {
 	font-family: 'Indie Flower', cursive;
 	font-size: 80px;
 	color: #30BD9C;
+	margin-bottom: 0;
 }
 
 .slogan {
@@ -115,7 +116,7 @@ body {
 	border-style: solid;
 	border-color: #EF476F;
 	border-radius: 50px;
-	margin: 60px 0 60px 0;
+	margin: 25px 0 25px 0;
 }
 
 #san:hover {
