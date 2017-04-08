@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aardvark</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/awesomplete.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Indie+Flower" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">
+                <div id="marquee"><img id="aardy" src="assets/images/aardvark_icon.png">aardvark</div>
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li id="about"><a href="about.html">About &amp; Acknowledgments</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="page-header">
+        <img src="assets/images/aardvark_icon.png" id="arthur2">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7" id="uno">
+
+                <div>
+                    <h3>Pick your college</h3><br>
+                    <div class="form-group">
+                            <input type="text" class="awesomplete form-control" id="schoolName" data-list="" />
+                        <!--<input type="text" class="form-control" id="usr" placeholder="Full College Name"> -->
+                    </div><br>
+                    <h3>Pick your major</h3><br>
+                    <div class="btn-group" id="major">
+                  <button type="button" class="btn btn-primary" id="majorFill">Choose your Major</button>
+                  <button type="button" class="btn btn-danger dropdown-toggle" id="majorButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" id="majorDropdown">
+                    
+                  </ul>
+            </div>
+
+                    <br>
+                    <h3>How much money do you plan to contribute per year?</h3><br>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="persContrib" placeholder="Eg: 2500">
+                    </div>
+                    <br>
+                    <h3>How much do you plan to receive from scholarships or other non-loan programs per year?</h3><br>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="scholContrib" placeholder="Eg: 1500">
+                    </div><br>
+                    <h3>How many years do you plan to attend?</h3><br>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="yearsAttend" placeholder="Eg: 3">
+                    </div><br>
+                    <h3>Is the college in state or out of state?</h3><br>
+                    <label class="radio-inline"><input type="radio" id="in" name="optradio">In State</label>
+                    <label class="radio-inline"><input type="radio" id="out" name="optradio">Out of State</label><br>
+                    <br>
+                    <h3>What is the interest rate on your loan in decimal? (Choose .05 if you don't know)</h3><br>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="interest" placeholder="Eg: .05">
+                    </div><br>
+                    <button id="submit">Submit</button>
+
+                </div>
+
+            </div>
+            <div class="col-sm-1"></div>
+
+            <div class="col-sm-4" id="tres">
+                <div>
+                    <h3> Recent Searches<br><br><br><br></h3>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom" id="footer">
+      <div class="container">
+        <p class="navbar-text text-center">&copy; Copyright 2017 The Aardvark Team</p>
+      </div>
+    </nav>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"></script>
+    <script src="assets/javascript/awesomplete.js" async></script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script type="text/javascript" src="assets/javascript/aardvark.js"></script>
+</body>
+</html>
