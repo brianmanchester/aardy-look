@@ -38,14 +38,15 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="page-header">
-        <img src="assets/images/aardvark_icon.png" id="arthur2">
+    <div class="page-header text-center">
+        <img src="assets/images/aardvark_icon.png" id="mediumAardy">
+        <h3 id="headline">just tell us a bit about your college plans<br>then see a picture of what life will be like following college</h3>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-7" id="uno">
+            <div class="col-sm-7 text-center" id="uno">
 
-                <div>
+                
                     <h3>Pick your college</h3><br>
                     <div class="form-group">
                             <input type="text" class="awesomplete form-control" id="schoolName" data-list="" />
@@ -53,15 +54,15 @@
                     </div><br>
                     <h3>Pick your major</h3><br>
                     <div class="btn-group" id="major">
-                  <button type="button" class="btn btn-primary" id="majorFill">Choose your Major</button>
-                  <button type="button" class="btn btn-danger dropdown-toggle" id="majorButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button type="button" class="btn" id="majorFill">Select a major</button>
+                  <button type="button" class="btn dropdown-toggle" id="majorButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu" id="majorDropdown">
                     
                   </ul>
-            </div>
+                 </div>
 
                     <br>
                     <h3>How much money do you plan to contribute per year?</h3><br>
@@ -81,8 +82,10 @@
                         <input type="text" class="form-control" id="yearsAttend" placeholder="Eg: 3">
                     </div><br>
                     <h3>Is the college in state or out of state?</h3><br>
+                    <div>
                     <label class="radio-inline"><input type="radio" id="in" name="optradio">In State</label>
                     <label class="radio-inline"><input type="radio" id="out" name="optradio">Out of State</label><br>
+                    </div>
                     <br>
                     <h3>What is the interest rate on your loan in decimal? (Choose .05 if you don't know)</h3><br>
                     <div class="form-group">
@@ -91,12 +94,9 @@
                     </div><br>
                     <button id="submit">Submit</button>
 
-                </div>
-
             </div>
-            <div class="col-sm-1"></div>
 
-            <div class="col-sm-4" id="tres">
+            <div class="col-sm-offset-1 col-sm-4" id="recentSearches">
                 <div>
                     <h3> Recent Searches<br><br><br><br></h3>
 
@@ -121,6 +121,6 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
-    <script type="text/javascript" src="assets/javascript/aardvark.js"></script>
+    <script type="text/javascript" src="assets/javascript/input.js"></script>
 </body>
 </html>

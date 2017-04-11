@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aardvark</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/awesomplete.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Indie+Flower" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">
+                <div id="marquee"><img id="aardy" src="assets/images/aardvark_icon.png">aardvark</div>
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li id="about"><a href="about.html">About &amp; Acknowledgments</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="page-header text-center">
+        <img src="assets/images/aardvark_icon.png" id="mediumAardy">
+        <h3 id="headline">choose a loan repayment period<br>then see what your monthly loan payment will look like compared to your monthly income</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center" id="collegeArea">
+                <div class="row">
+                    <div class="col-sm-3" id="logoGoesHere">
+                        <h2>Your College</h2>
+                        <h3 id="yourCollege"></h3>
+                    </div>
+                    <div class="col-sm-3">
+                        <h2>Your Major</h2>
+                        <h3 id="yourMajor"></h3>
+                    </div>
+                    <div class="col-sm-3">
+                        <h2>Your Initial Yearly Income</h2>
+                        <h3 id="yourIncome"></h3>
+                    </div>
+                    <div class="col-sm-3">
+                        <h2>Your Total College Loan Debt</h2>
+                        <h3 id="yourDebt"></h3>
+                    </div>
+                </div>
+                <h2 id="spacer">Select a Repayment Period</h2>
+                <div class="row" id="Eins">
+                    <h3>pay off your loans in...</h3>
+                    <button class="buttonStyle" id="5">5 Years</button>
+                    <button class="buttonStyle" id="10">10 Years</button>
+                    <button class="buttonStyle" id="25">25 Years</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-6 all" id='un'></div>
+                    <div class="col-sm-6 all" id='ichi'></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 all" id='deux0'></div>
+                    <div class="col-sm-6 all" id='ni0'></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 all" id='deux1'></div>
+                    <div class="col-sm-6 all" id='ni1'></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 all" id='deux2'></div>
+                    <div class="col-sm-6 all" id='ni2'></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row all" id="logoGoesHere"></div>
+                <div class="row all" id="payment"></div>
+                <div class="row" id="key"><span id="yellow">Yellow</span> is your monthly payment<br><span id="orange">Orange</span> is your remaining income.</div>
+            </div> 
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom" id="footer">
+      <div class="container">
+        <p class="navbar-text text-center">&copy; Copyright 2017 The Aardvark Team</p>
+      </div>
+    </nav>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/javascript/jscharts.js"></script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script type="text/javascript" src="assets/javascript/result.js"></script>
+</body>
+</html>

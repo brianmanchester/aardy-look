@@ -8,6 +8,7 @@ html {
 
 body {
 	font-family: 'Josefin Sans', sans-serif;
+	color: #343434;
 	/*font-family: 'Indie Flower', cursive;*/
 	position: relative;
 	min-height: 100%;
@@ -17,6 +18,7 @@ body {
 	background-color: #30BD9C;
 	border-color: #EF476F;
 	border-width: 0 0 2px 0;
+	margin-bottom: 0;
 }
 
 .navbar-default .navbar-brand {
@@ -61,6 +63,7 @@ body {
 #about {
 	padding-top: 5px;
 	font-size: 18px;
+	background-color: #30BD9C;
 }
 
 #aardyContainer {
@@ -70,7 +73,7 @@ body {
 	border-radius: 50%;
 	margin: 0 auto;
 	position: relative;
-	margin-top: 5px;
+	margin-top: 40px;
 }
 
 #bigAardy {
@@ -124,6 +127,10 @@ body {
 	background-color: #26547C;
 }
 
+#san:focus {
+	outline: 0;
+}
+
 .navbar-fixed-bottom {
 	border-color: #EF476F;
 	border-width: 2px 0 0 0;
@@ -144,26 +151,29 @@ body {
 /*input.html syles*/
 
 .page-header {
-    border: 0px;
+    border-color: #26547C;
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-#arthur2 {
-    width: 150px;
-    height: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+#headline {
+	margin: 0;
+	color: #30BD9C;
+}
+
+#mediumAardy {
+    width: 144px;
+    height: 99px;
 }
 
 #uno {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
+	margin: 20px 10px 100px 10px;
     overflow: auto;
     border-style: solid;
-    border-width: 2px;
-    border-color: slategray;
-    text-align: center;
+    border-width: 1px;
+    border-color: #EF476F;
+    border-radius: 10px;
 }
 
 .form-control {
@@ -171,14 +181,16 @@ body {
     margin: auto;
 }
 
-.dropdown-menu {
+ul {
     /*height: 40px;*/
-    overflow: scroll;
     background-color: white;
-    width: 92%;
     display: block;
     margin: auto;
     text-align: left;
+}
+
+ul:hover {
+	cursor: pointer;
 }
 
 button {
@@ -186,21 +198,30 @@ button {
 }
 
 #tres {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 5px;
+	margin: 20px 10px 100px 10px;
     border-style: solid;
-    border-width: 2px;
-    border-color: slategray;
-    text-align: center;
+    border-width: 1px;
+    border-color: #EF476F;
+    border-radius: 10px;
 }
 
 .radio-inline {
     font-size: 24px;
 }
 
+.form-group > ul {
+	background-color: white;
+    display: block;
+    margin: auto;
+    text-align: left;
+}
+
 .awesomplete {
     width: 92%;
+}
+
+#schoolName {
+	text-align: left;
 }
 
 #major {
@@ -208,14 +229,60 @@ button {
 }
 
 #majorFill {
-    width: 95%;
+    width: 92%;
+    text-align: left;
+    background-color: #fff;
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
 }
 
 #majorButton {
-    width: 5%;
+    width: 8%;
+    color: #fff;
+    background-color: #EF476F;
 }
 
 #majorDropdown {
     width: 100%;
     height: 200px;
+    overflow: scroll;
+}
+
+/*result.html styles*/
+
+#collegeArea {
+	margin-top: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #26547C;
+    border-radius: 10px;
+}
+
+#spacer {
+	margin: 30px 0 10px 0;
+}
+
+.buttonStyle {
+	display: inline-block;
+	width: 250px;
+	color: #EF476F;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 12px 0 8px 0;
+	background-color: #fff;
+	border-style: solid;
+	border-color: #EF476F;
+	border-radius: 50px;
+	margin: 30px;
+}
+
+.buttonStyle:hover {
+	color: #fff;
+	border-color: #EF476F;
+	background-color: #EF476F;
+}
+
+.buttonStyle:focus {
+	outline: 0;
 }
