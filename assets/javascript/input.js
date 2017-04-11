@@ -8,7 +8,7 @@
   };
   firebase.initializeApp(config1, "cool");
 var database1 = firebase.database(firebase.app("cool"));
-//insert after
+
   var config2 = {
     apiKey: "AIzaSyC5FjqLE_GMe98pc1Q9BBEQwwM_MTsHtFs",
     authDomain: "recentsearches-aa729.firebaseapp.com",
@@ -25,12 +25,13 @@ var database1 = firebase.database(firebase.app("cool"));
     $("#recentSearches").html("");
     for (var i = 0; i < snapshot.val().searches.length; i++) {
       var link = $("<span>");
+      link.attr("class", "links");
       link.attr("id", "link" + i);
-      link.html(snapshot.val().searches[i].college + " (" + snapshot.val().searches[i].major + ")<br>");
+      link.html("<h4>" + (i + 1) + ". " + snapshot.val().searches[i].college + " (" + snapshot.val().searches[i].major + ")</h4>");
       if (i > 9) {
         $("#link" + (i - 10)).html("");
       }
-      $("#recentSearches").prepend(link);
+      $("#recentSearches").append(link);
       $("#link" + i).click({param1: i}, function(event) {
         localStorage.setItem("college", snapshot.val().searches[event.data.param1].college);
         localStorage.setItem("major", snapshot.val().searches[event.data.param1].major);
@@ -39,12 +40,12 @@ var database1 = firebase.database(firebase.app("cool"));
         localStorage.setItem("yearsAttend", snapshot.val().searches[event.data.param1].yearsAttend);
         localStorage.setItem("location", snapshot.val().searches[event.data.param1].location);
         localStorage.setItem("interest", snapshot.val().searches[event.data.param1].interest);
-        location.replace("page3.html");
+        location.replace("result.html");
       });
     }
   });
   
-//insert before
+
 var staticIncome = [1, 5, 10, 25];
 var averageIncome = [5, 10, 25];
 database1.ref("income-by-major").once("value").then(function(snapshot) {
@@ -62,7 +63,62 @@ database1.ref("income-by-major").once("value").then(function(snapshot) {
     $('#majorFill').text(major);
   });
 });
+
+function validate() {
+  database.ref("colleges").on("value", function(snapshot) {
+  if (snapshot.val().indexOf($("#schoolName").val()) == -1) {
+    $("#errors").text("College not valid. Please choose another.");
+    return;
+  }
+});
+  if ($("#majorFill").text() == "Select a major") {
+    $("#errors").text("Major not selected.");
+    return;
+  }
+  if (isNaN($("#persContrib").val()) == true) {
+    $("#errors").text("Personal contributions field is not a number. Do not include dollar signs or commas.");
+    return;
+  }
+    if ($("#persContrib").val() < 0) {
+    $("#errors").text("Please enter a non-negative number for the personal contributions field.");
+    return;
+  }
+  if (isNaN($("#scholContrib").val()) == true) {
+    $("#errors").text("Scholarship contributions field is not a number. Do not include dollar signs or commas.");
+    return;
+  }
+  if ($("#scholContrib").val() < 0) {
+    $("#errors").text("Please enter a non-negative number for the scholarship contributions field.");
+    return;
+  }
+  if (isNaN($("#yearsAttend").val()) == true) {
+    $("#errors").text("Years you plan to attend college field is not a number.");
+    return;
+  }
+  if ($("#yearsAttend").val() <= 0) {
+    $("#errors").text("Please enter a positive number for the years to attend college field.");
+    return;
+  }
+  if (document.getElementById("in").checked == false && document.getElementById("out").checked == false) {
+    $("#errors").text("Please select in or out-of-state for your college.");
+    return;
+  }
+  if (isNaN($("#interest").val()) == true) {
+    $("#errors").text("Interest field is not a number.");
+    return;
+  }
+  if ($("#interest").val() < 0) {
+    $("#errors").text("Please type a non-negative number for the interest field.");
+    return;
+  }
+}
     $("#submit").click(function() {
+      $("#errors").text("");
+      validate();
+      if ($("#errors").text() !== "") {
+        window.scrollTo(0, 0);
+        return;
+      } else {
       localStorage.setItem("college", $("#schoolName").val());
       localStorage.setItem("major", $("#majorFill").text());
       localStorage.setItem("persContrib", $("#persContrib").val());
@@ -75,7 +131,7 @@ database1.ref("income-by-major").once("value").then(function(snapshot) {
       }
       localStorage.setItem("interest", $("#interest").val());
     
-    // insert after
+   
     var searchArray = [];
     database2.ref(localStorage.getItem("yrKey")).on("value", function(snapshot) {
       searchArray = snapshot.val().searches;
@@ -93,10 +149,5 @@ database1.ref("income-by-major").once("value").then(function(snapshot) {
       
         });
           setTimeout(function() {location.replace("result.html");}, 1000);
+        }
         });
-    
-// window.onunload = function() {
-//   database2.ref(localStorage.getItem("yrKey")).remove();
-//     };
-    //insert before
-    //

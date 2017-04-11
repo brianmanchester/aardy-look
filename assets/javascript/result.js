@@ -9,10 +9,31 @@ var config1 = {
   firebase.initializeApp(config1);
 
 var database1 = firebase.database();
-var staticIncome = [1];
+var staticIncome = [1, 5, 10, 25];
 var averageIncome = [5, 10, 25];
 var college = localStorage.getItem("college").split(" ");
 college = college.join("%20");
+
+$('#yourCollege').html(localStorage.getItem("college"));
+$('#yourMajor').html(localStorage.getItem("major"));
+
+$.ajax({
+    url: "https://aardvark-college-debt.firebaseio.com/income-by-major/" + localStorage.getItem("major") + "/static-median-income/year1.json",
+    method: "GET"
+}).done(function(response) {
+    var initialIncome = response;
+    var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+    $.getJSON(apiUrl, {
+        country: 'united-states',
+        start: "2017/1/1",
+        end: (2017 + 1) + "/1/1",
+        amount: response,
+        format: true
+    }).done(function (data) {
+        $('#yourIncome').html(data.replace(" ", ""));
+    });
+});
+
 
 $.ajax({
                 url: "https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=laoOF5Sp6MOWzUvnPi53y2EYv2PNL4ju9HCla52z&school.name=" + localStorage.getItem("college") + "&_fields=school.school_url",
@@ -38,12 +59,60 @@ $.ajax({
                 }
         cost = Number(cost);
         cost = ((cost * localStorage.getItem("yearsAttend")) - (localStorage.getItem("persContrib")*4) - (localStorage.getItem("scholContrib")*4));
-        $('#appendME').append("Total loan amount: $" + cost);
+        $('#yourDebt').html("$" + cost);
     });
 
-        $("#5").click(function() {
-            $(".all").html("");
-                var currentMajor = localStorage.getItem("major");
+//5 Year Button Click
+    $("#5").click(function() {
+        $(".all").html("");
+        var staticMonthly = 0;
+
+        $.ajax({
+            url: "https://aardvark-college-debt.firebaseio.com/income-by-major/" + localStorage.getItem("major") + "/static-median-income/year1.json",
+            method: "GET"
+        }).done(function(response) {
+            var initialIncome = response;
+            var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+            $.getJSON(apiUrl, {
+                country: 'united-states',
+                start: "2017/1/1",
+                end: (2017 + 1) + "/1/1",
+                amount: response,
+                format: true
+            }).done(function (data) {
+                data = data.split(" ").join("").split("$").join("");
+                data = Number(data);
+                staticMonthly = (data / 12);
+                staticMonthly = staticMonthly.toFixed(2);
+                $('#monthly0').html("<h4>Monthly Income: $" + staticMonthly + "</h4>");
+            });
+        });
+
+        function callForAllSI(i) {
+            var majorQueryURL_stat = "https://aardvark-college-debt.firebaseio.com/income-by-major/" + currentMajor + "/static-median-income/year" + staticIncome[i] + ".json";
+          $.ajax({
+            url: majorQueryURL_stat,
+            method: "GET"
+          }).done(function(response) {
+                    var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+
+            
+                $.getJSON(apiUrl, {
+                    country: 'united-states',
+                    start: "2017/1/1",
+                    end: (2017 + staticIncome[i]) + "/1/1",
+                    amount: response,
+                    format: true
+                }).done(function (data) {
+                    var money = data;
+                    var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money.replace(" ", ""));
+                    $('#mi' + i).html(text);
+                });
+            });
+        }
+
+
+    var currentMajor = localStorage.getItem("major");
     function callForSI(i) {
       var majorQueryURL_stat = "https://aardvark-college-debt.firebaseio.com/income-by-major/" + currentMajor + "/static-median-income/year" + staticIncome[i] + ".json";
       $.ajax({
@@ -62,8 +131,8 @@ $.ajax({
             })
               .done(function (data) {
                   var money = data;
-                          var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money);
-        $('#ichi').append(text);
+                          var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money.replace(" ", ""));
+        $('#mi' + i).html(text);
         
        
             $.ajax({
@@ -99,19 +168,19 @@ $.ajax({
         cost = Number(cost);
         $("#payment").html("Your Monthly Payment: $" + cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
-        myChart.setSize(300, 300);
+        myChart.setPieValuesColor('#343434');
+        myChart.setSize(250, 250);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
-        myChart.setPieRadius(120);
+        myChart.setPieRadius(100);
         myChart.setPieValuesPrefix("$");
-        myChart.setPieValuesFontSize(20);
+        myChart.setPieValuesFontSize(12);
         myChart.setPieValuesOffset(-50);
         myChart.setTitle("");
         myChart.draw();
@@ -139,8 +208,8 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
               .done(function (data) {
                   var money = data;
         
-        var text = $('<h4>').html('Average Income over ' + averageIncome[i] + ' years: <br>' + money);
-        $('#ni' + i).append(text);
+        var text = $('<h4>').html('Average Income over ' + averageIncome[i] + ' years: <br>' + money.replace(" ", ""));
+        $('#ni' + i).html(text);
             $.ajax({
                 url: "https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=laoOF5Sp6MOWzUvnPi53y2EYv2PNL4ju9HCla52z&school.name=" + college + "&_fields=2013.cost.tuition.in_state,2013.cost.tuition.out_of_state,school.school_url",
                 method: "GET"
@@ -174,36 +243,94 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         money = Number(money);
         cost = Number(cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
-        myChart.setSize(300, 300);
+        myChart.setPieValuesColor('#343434');
+        myChart.setSize(250, 250);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
-        myChart.setPieRadius(120);
+        myChart.setPieRadius(100);
         myChart.setPieValuesPrefix("$");
-        myChart.setPieValuesFontSize(20);
+        myChart.setPieValuesFontSize(12);
         myChart.setPieValuesOffset(-50);
         myChart.setTitle("");
         myChart.draw();
+
+        //average monthly income
+        $('#monthly' + (i + 1)).html("<h4>Average Monthly Income: $" + money + "</h4>");
     });
       });
           });
     }
+
+    callForSI(0);
+
     for (var i = 0; i < staticIncome.length; i++) {
-        callForSI(i);
+        callForAllSI(i);
     }
-    for (var i = 0; i < averageIncome.length; i++) {
+    for (var i = 0; i < 1; i++) {
         callForAI(i);
     }
+
+    $('#deux1').html("<h4>Years 6-10 will be student loan debt free!</h4>");
+    $('#deux2').html("<h4>Years 11-25 will be student loan debt free!</h4>");
         
             });
+
+//Ten Year Button Click
 $("#10").click(function() {
     $(".all").html("");
+
+    var staticMonthly = 0;
+
+        $.ajax({
+            url: "https://aardvark-college-debt.firebaseio.com/income-by-major/" + localStorage.getItem("major") + "/static-median-income/year1.json",
+            method: "GET"
+        }).done(function(response) {
+            var initialIncome = response;
+            var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+            $.getJSON(apiUrl, {
+                country: 'united-states',
+                start: "2017/1/1",
+                end: (2017 + 1) + "/1/1",
+                amount: response,
+                format: true
+            }).done(function (data) {
+                data = data.split(" ").join("").split("$").join("");
+                data = Number(data);
+                staticMonthly = (data / 12);
+                staticMonthly = staticMonthly.toFixed(2);
+                $('#monthly0').html("<h4>Monthly Income: $" + staticMonthly + "</h4>");
+            });
+        });
+
+    function callForAllSI(i) {
+            var majorQueryURL_stat = "https://aardvark-college-debt.firebaseio.com/income-by-major/" + currentMajor + "/static-median-income/year" + staticIncome[i] + ".json";
+          $.ajax({
+            url: majorQueryURL_stat,
+            method: "GET"
+          }).done(function(response) {
+                    var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+
+            
+                $.getJSON(apiUrl, {
+                    country: 'united-states',
+                    start: "2017/1/1",
+                    end: (2017 + staticIncome[i]) + "/1/1",
+                    amount: response,
+                    format: true
+                }).done(function (data) {
+                    var money = data;
+                    var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money.replace(" ", ""));
+                    $('#mi' + i).html(text);
+                });
+            });
+        }
+
                 var currentMajor = localStorage.getItem("major");
     function callForSI(i) {
       var majorQueryURL_stat = "https://aardvark-college-debt.firebaseio.com/income-by-major/" + currentMajor + "/static-median-income/year" + staticIncome[i] + ".json";
@@ -223,8 +350,8 @@ $("#10").click(function() {
             })
               .done(function (data) {
                   var money = data;
-                          var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money);
-        $('#ichi').append(text);
+                          var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money.replace(" ", ""));
+        $('#mi' + i).html(text);
         
        
             $.ajax({
@@ -260,19 +387,19 @@ $("#10").click(function() {
         cost = Number(cost);
         $("#payment").html("Your Monthly Payment: $" + cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
-        myChart.setSize(300, 300);
+        myChart.setPieValuesColor('#343434');
+        myChart.setSize(250, 250);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
-        myChart.setPieRadius(120);
+        myChart.setPieRadius(100);
         myChart.setPieValuesPrefix("$");
-        myChart.setPieValuesFontSize(20);
+        myChart.setPieValuesFontSize(12);
         myChart.setPieValuesOffset(-50);
         myChart.setTitle("");
         myChart.draw();
@@ -300,8 +427,8 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
               .done(function (data) {
                   var money = data;
         
-        var text = $('<h4>').html('Average Income over ' + averageIncome[i] + ' years: <br>' + money);
-        $('#ni' + i).append(text);
+        var text = $('<h4>').html('Average Income over ' + averageIncome[i] + ' years: <br>' + money.replace(" ", ""));
+        $('#ni' + i).html(text);
             $.ajax({
                 url: "https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=laoOF5Sp6MOWzUvnPi53y2EYv2PNL4ju9HCla52z&school.name=" + college + "&_fields=2013.cost.tuition.in_state,2013.cost.tuition.out_of_state,school.school_url",
                 method: "GET"
@@ -335,35 +462,92 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         money = Number(money);
         cost = Number(cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
-        myChart.setSize(300, 300);
+        myChart.setPieValuesColor('#343434');
+        myChart.setSize(250, 250);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
-        myChart.setPieRadius(120);
+        myChart.setPieRadius(100);
         myChart.setPieValuesPrefix("$");
-        myChart.setPieValuesFontSize(20);
+        myChart.setPieValuesFontSize(12);
         myChart.setPieValuesOffset(-50);
         myChart.setTitle("");
         myChart.draw();
+
+        //average monthly income
+        $('#monthly' + (i + 1)).html("<h4>Average Monthly Income: $" + money + "</h4>");
     });
       });
           });
     }
+
+    callForSI(0);
+
     for (var i = 0; i < staticIncome.length; i++) {
-        callForSI(i);
+        callForAllSI(i);
     }
-    for (var i = 0; i < averageIncome.length; i++) {
+    for (var i = 0; i < 2; i++) {
         callForAI(i);
     }
+
+    $('#deux2').html("<h4>Years 11-25 will be student loan debt free!</h4>");
         
             });
+
+//25 Year Button Click
 $("#25").click(function() {
+
+    var staticMonthly = 0;
+
+        $.ajax({
+            url: "https://aardvark-college-debt.firebaseio.com/income-by-major/" + localStorage.getItem("major") + "/static-median-income/year1.json",
+            method: "GET"
+        }).done(function(response) {
+            var initialIncome = response;
+            var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+            $.getJSON(apiUrl, {
+                country: 'united-states',
+                start: "2017/1/1",
+                end: (2017 + 1) + "/1/1",
+                amount: response,
+                format: true
+            }).done(function (data) {
+                data = data.split(" ").join("").split("$").join("");
+                data = Number(data);
+                staticMonthly = (data / 12);
+                staticMonthly = staticMonthly.toFixed(2);
+                $('#monthly0').html("<h4>Monthly Income: $" + staticMonthly + "</h4>");
+            });
+        });
+
+    function callForAllSI(i) {
+            var majorQueryURL_stat = "https://aardvark-college-debt.firebaseio.com/income-by-major/" + currentMajor + "/static-median-income/year" + staticIncome[i] + ".json";
+          $.ajax({
+            url: majorQueryURL_stat,
+            method: "GET"
+          }).done(function(response) {
+                    var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+
+            
+                $.getJSON(apiUrl, {
+                    country: 'united-states',
+                    start: "2017/1/1",
+                    end: (2017 + staticIncome[i]) + "/1/1",
+                    amount: response,
+                    format: true
+                }).done(function (data) {
+                    var money = data;
+                    var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money.replace(" ", ""));
+                    $('#mi' + i).html(text);
+                });
+            });
+        }
+
     $(".all").html("");
                 var currentMajor = localStorage.getItem("major");
     function callForSI(i) {
@@ -384,8 +568,8 @@ $("#25").click(function() {
             })
               .done(function (data) {
                   var money = data;
-                          var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money);
-        $('#ichi').append(text);
+                          var text = $('<h4>').html('Median Income for Year ' + staticIncome[i] + ': <br>' + money.replace(" ", ""));
+        $('#mi' + i).html(text);
         
        
             $.ajax({
@@ -421,19 +605,19 @@ $("#25").click(function() {
         cost = Number(cost);
         $("#payment").html("Your Monthly Payment: $" + cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
-        myChart.setSize(300, 300);
+        myChart.setPieValuesColor('#343434');
+        myChart.setSize(250, 250);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
-        myChart.setPieRadius(120);
+        myChart.setPieRadius(100);
         myChart.setPieValuesPrefix("$");
-        myChart.setPieValuesFontSize(20);
+        myChart.setPieValuesFontSize(12);
         myChart.setPieValuesOffset(-50);
         myChart.setTitle("");
         myChart.draw();
@@ -461,8 +645,8 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
               .done(function (data) {
                   var money = data;
         
-        var text = $('<h4>').html('Average Income over ' + averageIncome[i] + ' years: <br>' + money);
-        $('#ni' + i).append(text);
+        var text = $('<h4>').html('Average Income over ' + averageIncome[i] + ' years: <br>' + money.replace(" ", ""));
+        $('#ni' + i).html(text);
             $.ajax({
                 url: "https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=laoOF5Sp6MOWzUvnPi53y2EYv2PNL4ju9HCla52z&school.name=" + college + "&_fields=2013.cost.tuition.in_state,2013.cost.tuition.out_of_state,school.school_url",
                 method: "GET"
@@ -496,28 +680,34 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         money = Number(money);
         cost = Number(cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
-        myChart.setSize(300, 300);
+        myChart.setPieValuesColor('#343434');
+        myChart.setSize(250, 250);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
-        myChart.setPieRadius(120);
+        myChart.setPieRadius(100);
         myChart.setPieValuesPrefix("$");
-        myChart.setPieValuesFontSize(20);
+        myChart.setPieValuesFontSize(12);
         myChart.setPieValuesOffset(-50);
         myChart.setTitle("");
         myChart.draw();
+
+        //average monthly income
+        $('#monthly' + (i + 1)).html("<h4>Average Monthly Income: $" + money + "</h4>");
     });
       });
           });
     }
+
+    callForSI(0);
+
     for (var i = 0; i < staticIncome.length; i++) {
-        callForSI(i);
+        callForAllSI(i);
     }
     for (var i = 0; i < averageIncome.length; i++) {
         callForAI(i);

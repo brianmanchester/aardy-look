@@ -46,53 +46,77 @@
         <div class="row">
             <div class="col-sm-12 text-center" id="collegeArea">
                 <div class="row">
-                    <div class="col-sm-3" id="logoGoesHere">
-                        <h2>Your College</h2>
-                        <h3 id="yourCollege"></h3>
+                    <h2>Your College, Career, &amp; Debt Profile</h2>
+                    <div id="logoGoesHere"></div>
+                    <div class="liner"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 room">
+                        <h3>College</h3>
+                        <h4 id="yourCollege"></h4>
                     </div>
-                    <div class="col-sm-3">
-                        <h2>Your Major</h2>
-                        <h3 id="yourMajor"></h3>
+                    <div class="col-sm-3 room">
+                        <h3>Major</h3>
+                        <h4 id="yourMajor"></h4>
                     </div>
-                    <div class="col-sm-3">
-                        <h2>Your Initial Yearly Income</h2>
-                        <h3 id="yourIncome"></h3>
+                    <div class="col-sm-3 room">
+                        <h3>Total Student Loan Debt</h3>
+                        <h4 id="yourDebt"></h4>
                     </div>
-                    <div class="col-sm-3">
-                        <h2>Your Total College Loan Debt</h2>
-                        <h3 id="yourDebt"></h3>
+                    <div class="col-sm-3 room">
+                        <h3>Initial Yearly Income</h3>
+                        <h4 id="yourIncome"></h4>
                     </div>
                 </div>
-                <h2 id="spacer">Select a Repayment Period</h2>
                 <div class="row" id="Eins">
-                    <h3>pay off your loans in...</h3>
+                    <div class="liner"></div>
+                    <h2 id="spacer">Select a Repayment Period</h2>
+                    <h3 id="less">pay off your loans in...</h3>
                     <button class="buttonStyle" id="5">5 Years</button>
                     <button class="buttonStyle" id="10">10 Years</button>
                     <button class="buttonStyle" id="25">25 Years</button>
                 </div>
+                <div class="row">
+                    <div class="liner"></div>
+                    <h3 class="inline">Want to make a different profile?</h3>
+                    <a class="inline" href="input.html"><button id="newProfile">New Profile</button></a>
+                </div>
             </div>
         </div>
-        <div class="row" >
-            <div class="col-sm-6">
+        <div class="row" id="bottom">
+            <div class="col-sm-12">
                 <div class="row">
-                    <div class="col-sm-6 all" id='un'></div>
-                    <div class="col-sm-6 all" id='ichi'></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 all" id='deux0'></div>
-                    <div class="col-sm-6 all" id='ni0'></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 all" id='deux1'></div>
-                    <div class="col-sm-6 all" id='ni1'></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 all" id='deux2'></div>
-                    <div class="col-sm-6 all" id='ni2'></div>
+                    <div class="col-sm-3">
+                        <h2>Year 1</h2>
+                        <div id="monthly0"></div>
+                        <div id="un"></div>
+                        <div id="mi0"></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <h2>5 Years</h2>
+                        <div id="monthly1"></div>
+                        <div id="deux0"></div>
+                        <div id="ni0"></div>
+                        <div id="mi1"></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <h2>10 Years</h2>
+                        <div id="monthly2"></div>
+                        <div id="deux1"></div>
+                        <div id="ni1"></div>
+                        <div id="mi2"></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <h2>25 Years</h2>
+                        <div id="monthly3"></div>
+                        <div id="deux2"></div>
+                        <div id="ni2"></div>
+                        <div id="mi3"></div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="row all" id="logoGoesHere"></div>
+                <div class="row all"></div>
                 <div class="row all" id="payment"></div>
                 <div class="row" id="key"><span id="yellow">Yellow</span> is your monthly payment<br><span id="orange">Orange</span> is your remaining income.</div>
             </div> 
