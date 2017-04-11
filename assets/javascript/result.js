@@ -14,6 +14,27 @@ var averageIncome = [5, 10, 25];
 var college = localStorage.getItem("college").split(" ");
 college = college.join("%20");
 
+$('#yourCollege').html(localStorage.getItem("college"));
+$('#yourMajor').html(localStorage.getItem("major"));
+
+$.ajax({
+    url: "https://aardvark-college-debt.firebaseio.com/income-by-major/" + localStorage.getItem("major") + "/static-median-income/year1.json",
+    method: "GET"
+}).done(function(response) {
+    var initialIncome = response;
+    var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?';
+    $.getJSON(apiUrl, {
+        country: 'united-states',
+        start: "2017/1/1",
+        end: (2017 + 1) + "/1/1",
+        amount: response,
+        format: true
+    }).done(function (data) {
+        $('#yourIncome').html(data.replace(" ", ","));
+    });
+});
+
+
 $.ajax({
                 url: "https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=laoOF5Sp6MOWzUvnPi53y2EYv2PNL4ju9HCla52z&school.name=" + localStorage.getItem("college") + "&_fields=school.school_url",
                 method: "GET"
@@ -38,9 +59,10 @@ $.ajax({
                 }
         cost = Number(cost);
         cost = ((cost * localStorage.getItem("yearsAttend")) - (localStorage.getItem("persContrib")*4) - (localStorage.getItem("scholContrib")*4));
-        $('#appendME').append("Total loan amount: $" + cost);
+        $('#yourDebt').html("$" + cost);
     });
 
+//5 Year Button Click
         $("#5").click(function() {
             $(".all").html("");
                 var currentMajor = localStorage.getItem("major");
@@ -99,13 +121,13 @@ $.ajax({
         cost = Number(cost);
         $("#payment").html("Your Monthly Payment: $" + cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
+        myChart.setPieValuesColor('#343434');
         myChart.setSize(300, 300);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
@@ -174,13 +196,13 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         money = Number(money);
         cost = Number(cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
+        myChart.setPieValuesColor('#343434');
         myChart.setSize(300, 300);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
@@ -202,6 +224,8 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
     }
         
             });
+
+//Ten Year Button Click
 $("#10").click(function() {
     $(".all").html("");
                 var currentMajor = localStorage.getItem("major");
@@ -260,13 +284,13 @@ $("#10").click(function() {
         cost = Number(cost);
         $("#payment").html("Your Monthly Payment: $" + cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
+        myChart.setPieValuesColor('#343434');
         myChart.setSize(300, 300);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
@@ -335,13 +359,13 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         money = Number(money);
         cost = Number(cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
+        myChart.setPieValuesColor('#343434');
         myChart.setSize(300, 300);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
@@ -363,6 +387,8 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
     }
         
             });
+
+//25 Year Button Click
 $("#25").click(function() {
     $(".all").html("");
                 var currentMajor = localStorage.getItem("major");
@@ -421,13 +447,13 @@ $("#25").click(function() {
         cost = Number(cost);
         $("#payment").html("Your Monthly Payment: $" + cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
+        myChart.setPieValuesColor('#343434');
         myChart.setSize(300, 300);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);
@@ -496,13 +522,13 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         money = Number(money);
         cost = Number(cost);
         var myData = new Array(['', cost], ['', money - cost]);
-        var colors = ['#FACC00', '#FB9900'];
+        var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
         myChart.setDataArray(myData);
         myChart.colorizePie(colors);
         myChart.setTitleColor('#000000');
         myChart.setPieUnitsColor('#000000');
-        myChart.setPieValuesColor('#000000');
+        myChart.setPieValuesColor('#343434');
         myChart.setSize(300, 300);
         //myChart.setBackgroundImage("money.jpg");
         //myChart.set3D(true);

@@ -168,7 +168,7 @@ body {
 }
 
 #uno {
-	margin: 20px 10px 100px 10px;
+	margin: 20px 0 100px 0;
     overflow: auto;
     border-style: solid;
     border-width: 1px;
@@ -183,7 +183,7 @@ body {
 
 ul {
     /*height: 40px;*/
-    background-color: white;
+    background-color: #fff;
     display: block;
     margin: auto;
     text-align: left;
@@ -198,7 +198,8 @@ button {
 }
 
 #tres {
-	margin: 20px 10px 100px 10px;
+	margin-top: 20px;
+	margin-bottom: 100px;
     border-style: solid;
     border-width: 1px;
     border-color: #EF476F;
@@ -210,7 +211,7 @@ button {
 }
 
 .form-group > ul {
-	background-color: white;
+	background-color: #fff;
     display: block;
     margin: auto;
     text-align: left;
@@ -249,10 +250,25 @@ button {
     overflow: scroll;
 }
 
+#errors {
+	color: #EF476F;
+	font-size: 15px;
+}
+
+.links {
+	display: inline-block;
+}
+
+.links:hover {
+	cursor: pointer;
+	color: #30BD9C;
+}
+
 /*result.html styles*/
 
 #collegeArea {
 	margin-top: 20px;
+	margin-bottom: 100px;
     border-style: solid;
     border-width: 1px;
     border-color: #26547C;
@@ -260,7 +276,24 @@ button {
 }
 
 #spacer {
-	margin: 30px 0 10px 0;
+	margin: 30px 0 0 0;
+}
+
+#less {
+	margin-top: 5px;
+}
+
+.liner {
+	margin: 0 auto;
+	margin-bottom: 10px;
+	width: 92%;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	border-color: #30BD9C;
+}
+
+.room {
+	margin-bottom: 20px;
 }
 
 .buttonStyle {
@@ -274,15 +307,51 @@ button {
 	border-style: solid;
 	border-color: #EF476F;
 	border-radius: 50px;
-	margin: 30px;
+	margin: 30px 30px 40px 30px;
 }
 
 .buttonStyle:hover {
 	color: #fff;
-	border-color: #EF476F;
 	background-color: #EF476F;
 }
 
 .buttonStyle:focus {
 	outline: 0;
+	color: #30BD9C;
+	border-color: #30BD9C;
+}
+
+.buttonStyle:focus, hover {
+	background-color: #fff;
+	cursor: default;
+}
+
+.inline {
+	display: inline-block;
+	margin: 20px 40px 20px 40px;
+}
+
+#newProfile {
+	width: 250px;
+	color: #26547C;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 12px 0 8px 0;
+	background-color: #fff;
+	border-style: solid;
+	border-color: #26547C;
+	border-radius: 50px;
+}
+
+#newProfile:hover {
+	color: #fff;
+	background-color: #26547C;
+}
+
+#newProfile:focus {
+	outline: 0;
+}
+
+#bottom {
+	margin-bottom: 100px;
 }
