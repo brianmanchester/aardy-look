@@ -250,9 +250,8 @@ button {
     overflow: scroll;
 }
 
-#errors, #errorResults {
+#errorResults {
 	color: #EF476F;
-	font-size: 15px;
 }
 
 .links {

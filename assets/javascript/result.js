@@ -11,7 +11,6 @@ var config1 = {
 var database1 = firebase.database();
 var staticIncome = [1, 5, 10, 25];
 var averageIncome = [5, 10, 25];
-var errorResults = "";
 var college = localStorage.getItem("college").split(" ");
 college = college.join("%20");
 
@@ -65,14 +64,12 @@ $.ajax({
 
 function compare(money, cost) {
     if (money < cost) {
-        $("#errorResults").text("Your starting monthly income is less than your monthly loan payment. Please select another repayment plan or click New Profile to try something else.");
-        errorResults = $("#errorResults").text();
+        $("#errorResults").html("Your starting monthly income is less than your monthly loan payment. Please select another repayment plan or click New Profile to try something else.");
     }
 }
 
 //5 Year Button Click
     $("#5").click(function() {
-        console.log(errorResults);
         $("#errorResults").text("");
         function scroll() {
             window.scrollBy(0, 500);
@@ -299,17 +296,22 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         callForAI(i);
     }
 
+    setTimeout(function() {
+        $('#monthly2').html("");
+        $('#monthly3').html("");
+        $('#ni1').html("");
+        $('#ni2').html("");
+        $('#mi2').html("");
+        $('#mi3').html("");
+        $('#deux1').html("<h3>Years 6-10 will be student loan debt free!</h3>");
+        $('#deux2').html("<h3>Years 11-25 will be student loan debt free!</h3>");
+    }, 500);
 
-    $('#deux1').html("<h4>Years 6-10 will be student loan debt free!</h4>");
-    $('#deux2').html("<h4>Years 11-25 will be student loan debt free!</h4>");
-
-    console.log(errorResults);
-    if (errorResults !== "") {
-        console.log($("#errorResults").text());
+    console.log($("#errorResults").text());
+    if ($("#errorResults").text() !== "") {
         setTimeout(function() {
             $('.all').html("");
         }, 500);
-        errorResults = "";
     }
         
             });
@@ -534,9 +536,12 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
     for (var i = 0; i < 2; i++) {
         callForAI(i);
     }
-
-    $('#deux2').html("<h4>Years 11-25 will be student loan debt free!</h4>");
-
+    setTimeout(function() {
+        $('#monthly3').html("");
+        $('#ni2').html("");
+        $('#mi3').html("");
+        $('#deux2').html("<h3>Years 11-25 will be student loan debt free!</h3>");
+    }, 500);
     if ($("#errorResults").text() !== "") {
         setTimeout(function() {
             $('.all').html("");
