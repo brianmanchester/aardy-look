@@ -45,66 +45,56 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-7 text-center" id="uno">
-            <span id="errors"></span>
-            <br>
-
-                
-                    <h3>Pick your college</h3><br>
-                    <div class="form-group">
-                            <input type="text" class="awesomplete form-control" id="schoolName" data-list="" />
-                        <!--<input type="text" class="form-control" id="usr" placeholder="Full College Name"> -->
-                    </div><br>
-                    <h3>Pick your major</h3><br>
-                    <div class="btn-group" id="major">
-                  <button type="button" class="btn" id="majorFill">Select a major</button>
-                  <button type="button" class="btn dropdown-toggle" id="majorButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu" id="majorDropdown">
-                    
-                  </ul>
-                 </div>
-
-                    <br>
-                    <h3>How much money do you plan to contribute per year?</h3><br>
-                    <div class="form-group">
-
-                        <input type="text" class="form-control" id="persContrib" placeholder="Eg: 2500">
-                    </div>
-                    <br>
-                    <h3>How much do you plan to receive from scholarships or other non-loan programs per year?</h3><br>
-                    <div class="form-group">
-
-                        <input type="text" class="form-control" id="scholContrib" placeholder="Eg: 1500">
-                    </div><br>
-                    <h3>How many years do you plan to attend?</h3><br>
-                    <div class="form-group">
-
-                        <input type="text" class="form-control" id="yearsAttend" placeholder="Eg: 4">
-                    </div><br>
-                    <h3>Is the college in state or out of state?</h3><br>
-                    <div>
+                <span id="errors"></span>
+                <br>
+                <h3>Pick your college</h3><br>
+                <div class="form-group">
+                    <input type="text" class="awesomplete form-control" id="schoolName" data-list="" />
+                    <!--<input type="text" class="form-control" id="usr" placeholder="Full College Name"> -->
+                </div><br>
+                <h3>Pick your major</h3><br>
+                <div class="btn-group" id="major">
+                    <button type="button" class="btn" id="majorFill">Select a major</button>
+                    <button type="button" class="btn dropdown-toggle" id="majorButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" id="majorDropdown"> 
+                    </ul>
+                </div>
+                <br><br><br>
+                <h3>How much money do you plan to contribute per year?</h3>
+                <h5>(Include any personal savings, contributions from family or friends, and money from work you plan to make while in school. If your parent or guardian is taking on part of the school loan him or herself, include that amount here too.)</h5>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="persContrib" placeholder="Eg: 2500">
+                </div>
+                <br>
+                <h3>How much do you plan to receive from scholarships or other non-loan programs per year?</h3><br>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="scholContrib" placeholder="Eg: 1500">
+                </div><br>
+                <h3>How many years do you plan to attend?</h3><br>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="yearsAttend" placeholder="Eg: 4">
+                </div><br>
+                <h3>Is the college in state or out of state?</h3><br>
+                <div>
                     <label class="radio-inline"><input type="radio" id="in" name="optradio">In State</label>
                     <label class="radio-inline"><input type="radio" id="out" name="optradio">Out of State</label><br>
-                    </div>
-                    <br>
-                    <h3>What is the interest rate on your loan in decimal? (Choose .05 if you don't know)</h3><br>
-                    <div class="form-group">
-
-                        <input type="text" class="form-control" id="interest" placeholder="Eg: .05">
-                    </div><br>
-                    <button id="submit">Submit</button>
-
+                </div>
+                <br>
+                <h3>What is the interest rate on your loan in decimal? (Choose .05 if you don't know)</h3><br>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="interest" placeholder="Eg: .05">
+                </div><br>
+                <button id="submit">Submit</button>
             </div>
 
             <div class="col-sm-offset-1 col-sm-4" id="tres">
                 <h3 class="text-center">Recent Searches</h3><br>
                 <div id="recentSearches">
                 </div>
-
-                
-
             </div>
         </div>
     </div>
