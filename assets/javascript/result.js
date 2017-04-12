@@ -11,6 +11,7 @@ var config1 = {
 var database1 = firebase.database();
 var staticIncome = [1, 5, 10, 25];
 var averageIncome = [5, 10, 25];
+var errorResults = "";
 var college = localStorage.getItem("college").split(" ");
 college = college.join("%20");
 
@@ -62,9 +63,23 @@ $.ajax({
         $('#yourDebt').html("$" + cost);
     });
 
+function compare(money, cost) {
+    if (money < cost) {
+        $("#errorResults").text("Your starting monthly income is less than your monthly loan payment. Please select another repayment plan or click New Profile to try something else.");
+        errorResults = $("#errorResults").text();
+    }
+}
+
 //5 Year Button Click
     $("#5").click(function() {
-        $(".all").html("");
+        console.log(errorResults);
+        $("#errorResults").text("");
+        function scroll() {
+            window.scrollBy(0, 500);
+        }
+
+        setTimeout(scroll, 10);
+        
         var staticMonthly = 0;
 
         $.ajax({
@@ -166,7 +181,11 @@ $.ajax({
         cost = cost.toFixed(2);
         money = Number(money);
         cost = Number(cost);
-        $("#payment").html("Your Monthly Payment: $" + cost);
+        compare(money, cost);
+        if ($("#errorResults").text() !== "") {
+            return;
+        }
+        $("#payment").html("<h3>$" + cost + "</h3>");
         var myData = new Array(['', cost], ['', money - cost]);
         var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
@@ -242,6 +261,9 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         cost = cost.toFixed(2);
         money = Number(money);
         cost = Number(cost);
+        if (money < cost) {
+            return;
+        }
         var myData = new Array(['', cost], ['', money - cost]);
         var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
@@ -272,18 +294,29 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
     for (var i = 0; i < staticIncome.length; i++) {
         callForAllSI(i);
     }
+
     for (var i = 0; i < 1; i++) {
         callForAI(i);
     }
 
+
     $('#deux1').html("<h4>Years 6-10 will be student loan debt free!</h4>");
     $('#deux2').html("<h4>Years 11-25 will be student loan debt free!</h4>");
+
+    console.log(errorResults);
+    if (errorResults !== "") {
+        console.log($("#errorResults").text());
+        setTimeout(function() {
+            $('.all').html("");
+        }, 500);
+        errorResults = "";
+    }
         
             });
 
 //Ten Year Button Click
 $("#10").click(function() {
-    $(".all").html("");
+    $("#errorResults").text("");
 
     var staticMonthly = 0;
 
@@ -385,7 +418,11 @@ $("#10").click(function() {
         cost = cost.toFixed(2);
         money = Number(money);
         cost = Number(cost);
-        $("#payment").html("Your Monthly Payment: $" + cost);
+        compare(money, cost);
+        if ($("#errorResults").text() !== "") {
+            return;
+        }
+        $("#payment").html("<h3>$" + cost + "</h3>");
         var myData = new Array(['', cost], ['', money - cost]);
         var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
@@ -461,6 +498,9 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         cost = cost.toFixed(2);
         money = Number(money);
         cost = Number(cost);
+        if (money < cost) {
+            return;
+        }
         var myData = new Array(['', cost], ['', money - cost]);
         var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
@@ -496,12 +536,18 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
     }
 
     $('#deux2').html("<h4>Years 11-25 will be student loan debt free!</h4>");
+
+    if ($("#errorResults").text() !== "") {
+        setTimeout(function() {
+            $('.all').html("");
+        }, 500);
+    }
         
             });
 
 //25 Year Button Click
 $("#25").click(function() {
-
+    $("errorResults").text("");
     var staticMonthly = 0;
 
         $.ajax({
@@ -548,7 +594,6 @@ $("#25").click(function() {
             });
         }
 
-    $(".all").html("");
                 var currentMajor = localStorage.getItem("major");
     function callForSI(i) {
       var majorQueryURL_stat = "https://aardvark-college-debt.firebaseio.com/income-by-major/" + currentMajor + "/static-median-income/year" + staticIncome[i] + ".json";
@@ -603,7 +648,11 @@ $("#25").click(function() {
         cost = cost.toFixed(2);
         money = Number(money);
         cost = Number(cost);
-        $("#payment").html("Your Monthly Payment: $" + cost);
+        console.log(money, cost);
+        if ($("#errorResults").text() !== "") {
+            return;
+        }
+        $("#payment").html("<h3>$" + cost + "</h3>");
         var myData = new Array(['', cost], ['', money - cost]);
         var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('un', 'pie');
@@ -679,6 +728,9 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
         cost = cost.toFixed(2);
         money = Number(money);
         cost = Number(cost);
+        if (money < cost) {
+            return;
+        }
         var myData = new Array(['', cost], ['', money - cost]);
         var colors = ['#F7FF58', '#FF934F'];
         var myChart = new JSChart('deux' + i, 'pie');
@@ -711,5 +763,11 @@ var apiUrl = 'https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncal
     }
     for (var i = 0; i < averageIncome.length; i++) {
         callForAI(i);
+    }
+
+    if ($("#errorResults").text() !== "") {
+        setTimeout(function() {
+            $('.all').html("");
+        }, 500);
     }
             });

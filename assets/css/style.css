@@ -250,7 +250,7 @@ button {
     overflow: scroll;
 }
 
-#errors {
+#errors, #errorResults {
 	color: #EF476F;
 	font-size: 15px;
 }
@@ -268,7 +268,7 @@ button {
 
 #collegeArea {
 	margin-top: 20px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
     border-style: solid;
     border-width: 1px;
     border-color: #26547C;
@@ -354,4 +354,36 @@ button {
 
 #bottom {
 	margin-bottom: 100px;
+}
+
+#moreSpace {
+	margin-bottom: 30px;
+}
+
+.block1 {
+	display: inline-block;
+}
+
+.block2 {
+	display: inline-block;
+}
+
+#box1 {
+	width: 25px;
+	height: 25px;
+	border-style: solid;
+	border-color: #343434;
+	border-width: 1px;
+	background-color: #F7FF58;
+	margin-right: 10px;
+}
+
+#box2 {
+	width: 25px;
+	height: 25px;
+	border-style: solid;
+	border-color: #343434;
+	border-width: 1px;
+	background-color: #FF934F;
+	margin-right: 10px;
 }

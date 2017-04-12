@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="input.html">
                 <div id="marquee"><img id="aardy" src="assets/images/aardvark_icon.png">aardvark</div>
               </a>
             </div>
@@ -86,40 +86,69 @@
         <div class="row" id="bottom">
             <div class="col-sm-12">
                 <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h1>Debt Repayment Forecast</h1>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <h3 id="errorResults"></h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <h2>Your Monthly Payment</h2>
+                        <div id="payment"></div>
+                    </div>
+                    <div class="col-sm-6" id="moreSpace">
+                        <h2 class="text-center">Chart Key</h2>
+                        <div class="row">
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <div class="block1" id="box1"></div>
+                                <div class="block1">
+                                    <h4>your monthly payment</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <div class="block2" id="box2"></div>
+                                <div class="block2">
+                                    <h4>your remaining monthly income</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="liner"></div>
                     <div class="col-sm-3">
                         <h2>Year 1</h2>
-                        <div id="monthly0"></div>
-                        <div id="un"></div>
-                        <div id="mi0"></div>
+                        <div class="all" id="monthly0"></div>
+                        <div class="all" id="un"></div>
+                        <div class="all" id="mi0"></div>
                     </div>
                     <div class="col-sm-3">
-                        <h2>5 Years</h2>
-                        <div id="monthly1"></div>
-                        <div id="deux0"></div>
-                        <div id="ni0"></div>
-                        <div id="mi1"></div>
+                        <h2>Over 5 Years</h2>
+                        <div class="all" id="monthly1"></div>
+                        <div class="all" id="deux0"></div>
+                        <div class="all" id="ni0"></div>
+                        <div class="all" id="mi1"></div>
                     </div>
                     <div class="col-sm-3">
-                        <h2>10 Years</h2>
-                        <div id="monthly2"></div>
-                        <div id="deux1"></div>
-                        <div id="ni1"></div>
-                        <div id="mi2"></div>
+                        <h2>Over 10 Years</h2>
+                        <div class="all" id="monthly2"></div>
+                        <div class="all" id="deux1"></div>
+                        <div class="all" id="ni1"></div>
+                        <div class="all" id="mi2"></div>
                     </div>
                     <div class="col-sm-3">
-                        <h2>25 Years</h2>
-                        <div id="monthly3"></div>
-                        <div id="deux2"></div>
-                        <div id="ni2"></div>
-                        <div id="mi3"></div>
+                        <h2>Over 25 Years</h2>
+                        <div class="all" id="monthly3"></div>
+                        <div class="all" id="deux2"></div>
+                        <div class="all" id="ni2"></div>
+                        <div class="all" id="mi3"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="row all"></div>
-                <div class="row all" id="payment"></div>
-                <div class="row" id="key"><span id="yellow">Yellow</span> is your monthly payment<br><span id="orange">Orange</span> is your remaining income.</div>
-            </div> 
         </div>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom" id="footer">
